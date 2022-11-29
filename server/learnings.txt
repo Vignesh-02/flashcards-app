@@ -38,3 +38,9 @@ make changes to tsconfig.json as follows
 
 }
 
+4. The way to avoid typescript errors when using env variables is to 
+use ?? operator or define a value when it might be null
+?? or ! can be used 
+for e.g.
+mongoose.connect(process.env.URI ?? '') or
+mongoose.connect(process.env.URI!)
