@@ -32,7 +32,7 @@ app.get("/henlo", (req: Request,res: Response) => {
     res.send('henlo world')
 })
 
-mongoose.connect("mongodb+srv://hope:pkFAezQ9ulg33Yj1@cluster0.2pjhn.mongodb.net/flashcards?retryWrites=true")
+mongoose.connect(process.env.ATLAS_URI!)
 .then(() => {
     app.listen(PORT, () => {
         console.log(`server is running on port ${PORT}`)
