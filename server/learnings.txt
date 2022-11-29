@@ -1,0 +1,40 @@
+1. you need package 'ts-node' to compile typescript in
+node js.
+
+2. as typescript doesn’t know types of express class so @types/express helps in that
+
+3. If you are having typescript cannot find module error, do the following things
+
+install typescript as a project dependency
+npm i -D typescript@next
+
+Add this config in tsconfig.json
+"typescript.tsdk": "./node_modules/typescript/lib",
+
+Add type: module in package.json for es6 module imports
+
+make changes to tsconfig.json as follows
+
+{
+    "compilerOptions": {
+      "module": "NodeNext",
+      "esModuleInterop": true,
+      "target": "ES2022",
+      "moduleResolution": "NodeNext",
+      "outDir": "dist",
+      "forceConsistentCasingInFileNames": true,
+      "noFallthroughCasesInSwitch": true,
+      "isolatedModules": false,
+      "strict": true,
+      "noImplicitAny": true,
+      "useUnknownInCatchVariables": false,
+      "inlineSourceMap": true
+    },
+    "ts-node": {
+        "esm": true
+    },
+    "lib": ["esnext"],
+    "typescript.tsdk": "./node_modules/typescript/lib",
+
+}
+
