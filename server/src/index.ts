@@ -5,6 +5,7 @@ import { config } from "dotenv"
 config()
 
 import Deck from "./models/Deck"
+import deckRoutes from './routes/decks'
 
 console.log(Deck)
 const app = express()
@@ -15,28 +16,7 @@ app.use(cors({
 }))
 app.use(express.json())
 
-app.post("/decks", async (req: Request,res: Response) => {
-    const { title } = req.body
-    const newDeck = new Deck({
-        title
-    })
-    const createdDeck = await newDeck.save()
-    res.json(createdDeck)
-})
-
-app.get("/decks", async (req: Request,res: Response) => {
-    const decks = await Deck.find()
-    if(!decks) res.json({ "message": "No flash card decks found"})
-    res.status(200).json(decks)
-})
-
-app.delete('/decks/:deckId', async (req: Request,res: Response) => {
-    const deckId = req.params.deckId
-
-   const result = await Deck.findByIdAndDelete(deckId).exec()
-   res.json(result)
-
-})
+app.use("/decks", deckRoutes)
 
 app.get("/", (req: Request,res: Response) => {
     res.send('henlo world')

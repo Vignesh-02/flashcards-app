@@ -23,8 +23,9 @@ function App() {
 
   const handleDelete = async (deckId: string) => {
     
-    await deleteDeck(deckId)
+   const delDeck = await deleteDeck(deckId)
 
+    console.log(delDeck)
     setDecks(decks.filter((deck) => deck._id !== deckId))
     
   }
@@ -36,10 +37,7 @@ function App() {
     }
 
     fetchDecks()
-    return () => {
-      console.log("cleaning")
-    }
-  },[decks])
+  })
 
   return (
     <div className='h-screen  justify-center items-center flex flex-col bg-gray-200'>
