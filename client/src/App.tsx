@@ -1,40 +1,41 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import createDeck from './api/createDeck';
+import deleteDeck from './api/deleteDeck';
+import getDecks from './api/getDecks';
 
-type TDeck = {
-  title: string;
-  _id: string;
-}
+
 
 
 
 function App() {
   const [title, setTitle] = useState("")
-  const [decks, setDecks] = useState<TDeck[]>([])
+  const [decks, setDecks] = useState<any[]>([])
 
   const handleSubmit = async  (e: React.FormEvent) => {
     e.preventDefault()
-    await fetch('http://localhost:5002/decks',{
-      method: 'POST',
-      body: JSON.stringify({
-        title: title
-      }),
-      headers: {
-        "Content-Type": "application/json" 
-      },
-    })
+   
+    const deck = await createDeck(title)
+    setDecks([...decks, deck])
     setTitle("")
 
   }
 
+  const handleDelete = async (deckId: string) => {
+    
+    await deleteDeck(deckId)
+
+    setDecks(decks.filter((deck) => deck._id !== deckId))
+    
+  }
+
   useEffect(() => {
     async function fetchDecks(){
-     const response =  await fetch('http://localhost:5002/decks')
-     const newDecks = await response.json()
-     setDecks(newDecks)
+      const newDecks = await getDecks()
+      setDecks(newDecks)
     }
 
     fetchDecks()
-
     return () => {
       console.log("cleaning")
     }
@@ -46,8 +47,15 @@ function App() {
         {
           decks.map((deck) => (
             <li className=' w-48 h-24 bg-white shadow-xl flex justify-center items-center 
-            hover:bg-gray-300 cursor-pointer
-            my-1' key={deck._id}>{deck.title}</li>
+           cursor-pointer relative
+            my-1' key={deck._id}>
+              <button onClick={() => handleDelete(deck._id)}
+              className=' items-end absolute top-1 right-1  hover:bg-gray-300 '
+              > 
+                X
+              </button>
+              <Link to={`decks/${deck._id}`}>{deck.title}</Link>
+              </li>
           ))
         }
       </ul>

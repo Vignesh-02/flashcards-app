@@ -30,6 +30,14 @@ app.get("/decks", async (req: Request,res: Response) => {
     res.status(200).json(decks)
 })
 
+app.delete('/decks/:deckId', async (req: Request,res: Response) => {
+    const deckId = req.params.deckId
+
+   const result = await Deck.findByIdAndDelete(deckId).exec()
+   res.json(result)
+
+})
+
 app.get("/", (req: Request,res: Response) => {
     res.send('henlo world')
 })
