@@ -1,0 +1,6 @@
+1. IN html, every time a user submits a form, the page
+gets reloaded. To avoid this, we use e.preventDefault()
+
+2. When you are sending json in a post request using fetch to 
+post data, make sure to set the correct headers
+

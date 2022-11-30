@@ -44,3 +44,13 @@ use ?? operator or define a value when it might be null
 for e.g.
 mongoose.connect(process.env.URI ?? '') or
 mongoose.connect(process.env.URI!)
+
+5. Update on #3 
+Removed typescript and server is working fine.
+It was causing a conflict with typescript package version which 
+was a peer of ts-node.
+
+6. If you get this error
+Argument of type 'Response' is not assignable to parameter of type 'SetStateAction<never[]>'.ts(2345)
+
+make sure to set state to response.json
