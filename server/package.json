@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "node --experimental-modules --es-module-specifier-resolution=node index",
+    "build": "tsc",
+    "start": "node --experimental-modules --es-module-specifier-resolution=node build/index.js",
     "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node --watch \"src/**\" --ext \"ts,json\" ts-node --exec \"ts-node src/index.ts\""
   },
   "keywords": [],

@@ -6,11 +6,11 @@ export type TDeck = {
     _id: string;  
 }
 
-const getDecks = async (): Promise<TDeck[]> => {
+const getDeck = async (deckId: string): Promise<TDeck> => {
   
-    const response =  await fetch(`${API_URL}/decks`)
+    const response =  await fetch(`${API_URL}/decks/${deckId}`)
     return response.json()
 
 }
 
-export default getDecks  
+export default getDeck

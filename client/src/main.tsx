@@ -1,25 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import Deck from './Deck'
-
+import { BrowserRouter as Router,  Route, Routes } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Deck from './Deck';
+import Header from './Header';
+import FlashCards from './FlashCards'
 import './index.css'
-import { BrowserRouter as Router, RouterProvider, createBrowserRouter, Route, Routes } from 'react-router-dom';
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />
-  },
-  {
-    path: "/decks/:deckId",
-    element: <Deck />
-  }
-])
-
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Router>
+      <Routes>
+        <Route path='/*' element={<App />} />
+      </Routes>
+    </Router>
   </React.StrictMode>
 )
+

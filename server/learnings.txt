@@ -54,3 +54,6 @@ was a peer of ts-node.
 Argument of type 'Response' is not assignable to parameter of type 'SetStateAction<never[]>'.ts(2345)
 
 make sure to set state to response.json
+
+7. In the getDeck function make sure that the type of object you return is
+<TDeck[]>
