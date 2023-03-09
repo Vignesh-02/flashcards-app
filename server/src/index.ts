@@ -11,8 +11,10 @@ console.log(Deck)
 const app = express()
 const PORT=5002
 
+const site_url = process.env.SITE_URL
+
 app.use(cors({
-    origin: 'http://localhost:5173'
+    origin: 'http://localhost:5173' || site_url
 }))
 app.use(express.json())
 
