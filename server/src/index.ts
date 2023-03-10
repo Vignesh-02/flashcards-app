@@ -30,8 +30,10 @@ const corsOptions = {
 
 // app.use(cors(corsOptions));
 // For development use this, 'http://localhost:5173'
+const origin_url = process.env.mode === 'prod' ? site_url : 'http://localhost:5173'
+
 app.use(cors({
-    origin: site_url
+    origin: origin_url
 }))
 
 app.use(express.json());
