@@ -30,6 +30,7 @@ const corsOptions = {
 
 // app.use(cors(corsOptions));
 // For development use this, 'http://localhost:5173'
+console.log(process.env.mode)
 const origin_url = process.env.mode === 'prod' ? site_url : 'http://localhost:5173'
 
 app.use(cors({
